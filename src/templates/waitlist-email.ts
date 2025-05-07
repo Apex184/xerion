@@ -1,45 +1,3 @@
-import { ReactElement } from 'react';
-
-interface WaitlistEmailProps {
-    name: string;
-}
-
-// export const WaitlistEmail = ({ name }: WaitlistEmailProps): ReactElement => {
-//     return (
-//         <div style= {{ fontFamily: 'Arial, sans-serif', maxWidth: '600px', margin: '0 auto' }
-// }>
-//     <div style={ { backgroundColor: '#f8f9fa', padding: '20px', borderRadius: '5px' } }>
-//         <h1 style={ { color: '#333', textAlign: 'center' } }> Welcome to Xerion! 🎉</h1>
-
-//             < p style = {{ color: '#666', fontSize: '16px', lineHeight: '1.6' }}>
-//                 Dear { name },
-// </p>
-
-//     < p style = {{ color: '#666', fontSize: '16px', lineHeight: '1.6' }}>
-//         Thank you for joining our waitlist! We're excited to have you on board and can't wait to share our product with you.
-//                 </p>
-
-//         < p style = {{ color: '#666', fontSize: '16px', lineHeight: '1.6' }}>
-//             We'll keep you updated on our progress and let you know as soon as we're ready to launch.In the meantime, if you have any questions, feel free to reach out to us.
-//                 </p>
-
-//                 < div style = {{ textAlign: 'center', margin: '30px 0' }}>
-//                     <p style={ { color: '#666', fontSize: '14px' } }>
-//                         Best regards, <br />
-//                         The Xerion Team
-//     </p>
-//     </div>
-
-//     < div style = {{ borderTop: '1px solid #eee', paddingTop: '20px', marginTop: '20px', textAlign: 'center' }}>
-//         <p style={ { color: '#999', fontSize: '12px' } }>
-//             This is an automated message, please do not reply directly to this email.
-//                     </p>
-//                 </div>
-//                 </div>
-//                 </div>
-//     );
-// };
-
 export const getWaitlistEmailTemplate = (name: string): string => {
     return `
         <!DOCTYPE html>
@@ -81,4 +39,4 @@ export const getWaitlistEmailTemplate = (name: string): string => {
         </body>
         </html>
     `;
-};
+}; 

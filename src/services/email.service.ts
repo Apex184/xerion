@@ -1,5 +1,5 @@
 import { Resend } from 'resend';
-import { getWaitlistEmailTemplate } from '../templates/waitlist-email';
+import { getWaitlistEmailTemplate } from '../templates';
 import dotenv from 'dotenv';
 dotenv.config();
 
