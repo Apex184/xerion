@@ -1,8 +1,17 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
+interface Role {
+    User: 'User';
+    Investor: 'Investor';
+    Partner: 'Partner';
+}
+
 export interface IWaitlist extends Document {
     email: string;
     name: string;
+    phone: string;
+    company: string;
+    role: Role;
     status: 'pending' | 'approved' | 'rejected';
     createdAt: Date;
     updatedAt: Date;
@@ -22,10 +31,23 @@ const WaitlistSchema: Schema = new Schema(
             required: true,
             trim: true,
         },
+        phone: {
+            type: String,
+            required: true,
+            trim: true,
+        },
+        company: {
+            type: String,
+        },
+        role: {
+            type: String,
+            enum: ['User', 'Investor', 'Partner'],
+            default: 'User',
+        },
         status: {
             type: String,
-            enum: ['pending', 'approved', 'rejected'],
-            default: 'pending',
+            enum: ['Pending', 'Approved', 'Rejected'],
+            default: 'Pending',
         },
     },
     {

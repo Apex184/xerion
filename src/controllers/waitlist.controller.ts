@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import Waitlist, { IWaitlist } from '../models/waitlist.model';
+import { sendWaitlistConfirmation } from '../services/email.service';
 
 export const joinWaitlist = async (req: Request, res: Response) => {
     try {
@@ -17,6 +18,15 @@ export const joinWaitlist = async (req: Request, res: Response) => {
         });
 
         await waitlistEntry.save();
+
+        // Send confirmation email
+        try {
+            await sendWaitlistConfirmation(email, name);
+        } catch (emailError) {
+            console.error('Failed to send confirmation email:', emailError);
+            // Continue with the response even if email fails
+        }
+
         res.status(201).json(waitlistEntry);
     } catch (error) {
         res.status(500).json({ message: 'Error joining waitlist', error });
