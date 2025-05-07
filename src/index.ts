@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import waitlistRoutes from './routes/waitlist.routes';
+import healthRoutes from './routes/health.routes';
 
 dotenv.config();
 
@@ -13,6 +14,7 @@ app.use(express.json());
 
 
 app.use('/api/waitlist', waitlistRoutes);
+app.use('/health', healthRoutes);
 
 
 mongoose
