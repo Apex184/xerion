@@ -9,7 +9,7 @@ interface Role {
 export interface IWaitlist extends Document {
     email: string;
     name: string;
-    phone: string;
+    // phone: string;
     company: string;
     role: Role;
     status: 'pending' | 'approved' | 'rejected';
@@ -31,11 +31,11 @@ const WaitlistSchema: Schema = new Schema(
             required: true,
             trim: true,
         },
-        phone: {
-            type: String,
-            required: true,
-            trim: true,
-        },
+        // phone: {
+        //     type: String,
+        //     required: true,
+        //     trim: true,
+        // },
         company: {
             type: String,
         },

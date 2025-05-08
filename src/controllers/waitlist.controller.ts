@@ -4,7 +4,7 @@ import { sendWaitlistConfirmation } from '../services/email.service';
 
 export const joinWaitlist = async (req: Request, res: Response) => {
     try {
-        const { email, name, company, role, phone } = req.body;
+        const { email, name, company, role } = req.body;
 
         // Check if email already exists
         const existingUser = await Waitlist.findOne({ email });
@@ -16,8 +16,7 @@ export const joinWaitlist = async (req: Request, res: Response) => {
             email,
             name,
             company,
-            role,
-            phone,
+            role
         });
 
         await waitlistEntry.save();
