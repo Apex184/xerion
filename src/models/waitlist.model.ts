@@ -6,6 +6,12 @@ interface Role {
     Partner: 'Partner';
 }
 
+interface UserType {
+    User: 'User';
+    Investor: 'Investor';
+    Partner: 'Partner';
+}
+
 export interface IWaitlist extends Document {
     email: string;
     name: string;
@@ -13,6 +19,7 @@ export interface IWaitlist extends Document {
     company: string;
     role: Role;
     status: 'pending' | 'approved' | 'rejected';
+    userType: UserType;
     createdAt: Date;
     updatedAt: Date;
 }
@@ -31,15 +38,14 @@ const WaitlistSchema: Schema = new Schema(
             required: true,
             trim: true,
         },
-        // phone: {
-        //     type: String,
-        //     required: true,
-        //     trim: true,
-        // },
+
         company: {
             type: String,
         },
         role: {
+            type: String
+        },
+        userType: {
             type: String,
             enum: ['User', 'Investor', 'Partner'],
             default: 'User',
