@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import Waitlist, { IWaitlist } from '../models/waitlist.model';
+import { Waitlist, IWaitlist } from '../models/waitlist';
 import { sendWaitlistConfirmation } from '../services/email.service';
 import { sendAdminConfirmation } from '../services/admin-notification.service';
 

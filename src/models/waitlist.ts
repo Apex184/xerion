@@ -1,6 +1,5 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
-// Define the interface for Waitlist document
 export interface IWaitlist extends Document {
     email: string;
     name: string;
@@ -12,7 +11,7 @@ export interface IWaitlist extends Document {
     updatedAt: Date;
 }
 
-// Create the schema
+
 const waitlistSchema = new Schema<IWaitlist>(
     {
         email: {
@@ -54,6 +53,5 @@ const waitlistSchema = new Schema<IWaitlist>(
 );
 
 // Create and export the model
-const Waitlist = mongoose.model<IWaitlist>('Waitlist', waitlistSchema);
+export const Waitlist = mongoose.model<IWaitlist>('Waitlist', waitlistSchema);
 
-export default Waitlist;
