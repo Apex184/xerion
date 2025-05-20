@@ -1,13 +1,13 @@
-import express, { Express } from 'express';
+import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import waitlistRoutes from './routes/waitlist.routes';
-import healthRoutes from './routes/health.routes';
+import waitlistRoutes from './routes/waitlist';
+import healthRoutes from './routes/health';
 
 dotenv.config();
 
-const app: Express = express();
+const app = express();
 const port = process.env.PORT || 5000;
 
 
