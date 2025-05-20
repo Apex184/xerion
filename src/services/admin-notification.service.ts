@@ -17,7 +17,7 @@ export const sendAdminConfirmation = async (
     try {
         const { data, error } = await resend.emails.send({
             from: 'Xerion <support@zerastake.com>',
-            to: 'akindeleapex@gmail.com',
+            to: 'xerionautocal@gmail.com',
             subject: '📥 New Xerion Waitlist Signup',
             html: getAdminNotificationTemplate(details),
         });
