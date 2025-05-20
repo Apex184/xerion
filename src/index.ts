@@ -1,4 +1,4 @@
-import express, { Application } from 'express';
+import express, { Express } from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -7,7 +7,7 @@ import healthRoutes from './routes/health.routes';
 
 dotenv.config();
 
-const app: Application = express();
+const app: Express = express();
 const port = process.env.PORT || 5000;
 
 
@@ -18,7 +18,7 @@ const allowedOrigins = [
 ];
 
 app.use(cors({
-    origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
+    origin: (origin, callback) => {
         if (!origin || allowedOrigins.includes(origin)) {
             callback(null, true);
         } else {
