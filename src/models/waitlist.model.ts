@@ -1,30 +1,19 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import mongoose, { Document, Schema } from 'mongoose';
 
-interface Role {
-    User: 'User';
-    Investor: 'Investor';
-    Partner: 'Partner';
-}
-
-interface UserType {
-    User: 'User';
-    Investor: 'Investor';
-    Partner: 'Partner';
-}
-
+// Define the interface for Waitlist document
 export interface IWaitlist extends Document {
     email: string;
     name: string;
-    // phone: string;
-    company: string;
-    role: Role;
-    status: 'pending' | 'approved' | 'rejected';
-    userType: UserType;
+    country: string;
+    role: string;
+    userType: string;
+    status: string;
     createdAt: Date;
     updatedAt: Date;
 }
 
-const WaitlistSchema: Schema = new Schema(
+// Create the schema
+const waitlistSchema = new Schema<IWaitlist>(
     {
         email: {
             type: String,
@@ -38,22 +27,25 @@ const WaitlistSchema: Schema = new Schema(
             required: true,
             trim: true,
         },
-
         country: {
             type: String,
+            required: true,
+            trim: true,
         },
         role: {
-            type: String
+            type: String,
+            required: true,
+            trim: true,
         },
         userType: {
             type: String,
-            enum: ['User', 'Investor', 'Partner'],
-            default: 'User',
+            required: true,
+            trim: true,
         },
         status: {
             type: String,
-            enum: ['Pending', 'Approved', 'Rejected'],
-            default: 'Pending',
+            enum: ['pending', 'approved', 'rejected'],
+            default: 'pending',
         },
     },
     {
@@ -61,4 +53,7 @@ const WaitlistSchema: Schema = new Schema(
     }
 );
 
-export default mongoose.model<IWaitlist>('Waitlist', WaitlistSchema); 
+// Create and export the model
+const Waitlist = mongoose.model<IWaitlist>('Waitlist', waitlistSchema);
+
+export default Waitlist;

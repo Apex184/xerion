@@ -1,23 +1,11 @@
-import { Router } from 'express';
-import {
-    joinWaitlist,
-    getWaitlist,
-    updateWaitlistStatus,
-    deleteWaitlistEntry,
-} from '../controllers/waitlist.controller';
+import express, { Router } from 'express';
+import * as waitlistController from '../controllers/waitlist.controller';
 
-const router = Router();
+const router: Router = express.Router();
 
-// Join waitlist
-router.post('/', joinWaitlist);
+router.post('/', waitlistController.joinWaitlist);
+router.get('/', waitlistController.getWaitlist);
+router.put('/:id', waitlistController.updateWaitlistStatus);
+router.delete('/:id', waitlistController.deleteWaitlistEntry);
 
-// Get all waitlist entries
-router.get('/', getWaitlist);
-
-// Update waitlist status
-router.patch('/:id', updateWaitlistStatus);
-
-// Delete waitlist entry
-router.delete('/:id', deleteWaitlistEntry);
-
-export default router; 
+export default router;

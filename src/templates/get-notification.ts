@@ -1,11 +1,11 @@
 export const getAdminNotificationTemplate = (data: {
-    name: string;
-    email: string;
-    country: string;
-    role?: string;
-    userType?: string;
+  name: string;
+  email: string;
+  country: string;
+  role?: string;
+  userType?: string;
 }): string => {
-    return `
+  return `
       <h2>🎉 New Waitlist Signup</h2>
       <ul>
         <li><strong>Name:</strong> ${data.name}</li>

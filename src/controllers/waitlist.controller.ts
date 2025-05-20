@@ -5,7 +5,7 @@ import { sendAdminConfirmation } from '../services/admin-notification.service';
 
 export const joinWaitlist = async (req: Request, res: Response) => {
     try {
-        const { email, name, country, role, userType } = req.body;
+        const { email, name, country, role, userType } = req.body as IWaitlist;
 
         const existingUser = await Waitlist.findOne({ email });
         if (existingUser) {
