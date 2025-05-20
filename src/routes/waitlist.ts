@@ -4,7 +4,7 @@ import {
     getWaitlist,
     updateWaitlistStatus,
     deleteWaitlistEntry,
-} from '../controllers/waitlist.controller';
+} from '../controllers/waitlist';
 
 const router = Router();
 
