@@ -39,7 +39,7 @@ const WaitlistSchema: Schema = new Schema(
             trim: true,
         },
 
-        company: {
+        country: {
             type: String,
         },
         role: {

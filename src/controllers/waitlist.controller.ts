@@ -1,32 +1,32 @@
 import { Request, Response } from 'express';
 import Waitlist, { IWaitlist } from '../models/waitlist.model';
 import { sendWaitlistConfirmation } from '../services/email.service';
+import { sendAdminConfirmation } from '../services/admin-notification.service';
 
 export const joinWaitlist = async (req: Request, res: Response) => {
     try {
-        const { email, name, company, role, userType } = req.body;
+        const { email, name, country, role, userType } = req.body;
 
         const existingUser = await Waitlist.findOne({ email });
         if (existingUser) {
             return res.status(400).json({ message: 'Email already registered' });
         }
 
-        const waitlistEntry = new Waitlist({
-            email,
-            name,
-            company,
-            role,
-            userType
-        });
-
+        const waitlistEntry = new Waitlist({ email, name, country, role, userType });
         await waitlistEntry.save();
 
-        // Send confirmation email
+        // Send confirmation to user
         try {
             await sendWaitlistConfirmation(email, name);
         } catch (emailError) {
-            console.error('Failed to send confirmation email:', emailError);
-            // Continue with the response even if email fails
+            console.error('User confirmation failed:', emailError);
+        }
+
+        // 📩 Send notification to admin (you)
+        try {
+            await sendAdminConfirmation({ email, name, country, role, userType });
+        } catch (adminEmailError) {
+            console.error('Failed to notify admin:', adminEmailError);
         }
 
         res.status(201).json(waitlistEntry);
@@ -34,6 +34,7 @@ export const joinWaitlist = async (req: Request, res: Response) => {
         res.status(500).json({ message: 'Error joining waitlist', error });
     }
 };
+
 
 export const getWaitlist = async (req: Request, res: Response) => {
     try {

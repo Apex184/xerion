@@ -24,4 +24,6 @@ export const sendWaitlistConfirmation = async (email: string, name: string) => {
         console.error('Failed to send email:', error);
         throw error;
     }
-}; 
+};
+
+
