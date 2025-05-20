@@ -5,14 +5,14 @@ import { sendAdminConfirmation } from '../services/admin-notification.service';
 
 export const joinWaitlist = async (req: Request, res: Response) => {
     try {
-        const { email, name, country, role, userType } = req.body as IWaitlist;
+        const { email, name, country } = req.body as IWaitlist;
 
         const existingUser = await Waitlist.findOne({ email });
         if (existingUser) {
             return res.status(400).json({ message: 'Email already registered' });
         }
 
-        const waitlistEntry = new Waitlist({ email, name, country, role, userType });
+        const waitlistEntry = new Waitlist({ email, name, country });
         await waitlistEntry.save();
 
         // Send confirmation to user
@@ -24,7 +24,7 @@ export const joinWaitlist = async (req: Request, res: Response) => {
 
         // 📩 Send notification to admin (you)
         try {
-            await sendAdminConfirmation({ email, name, country, role, userType });
+            await sendAdminConfirmation({ email, name, country });
         } catch (adminEmailError) {
             console.error('Failed to notify admin:', adminEmailError);
         }

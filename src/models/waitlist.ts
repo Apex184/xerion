@@ -4,8 +4,6 @@ export interface IWaitlist extends Document {
     email: string;
     name: string;
     country: string;
-    role: string;
-    userType: string;
     status: string;
     createdAt: Date;
     updatedAt: Date;
@@ -27,16 +25,6 @@ const waitlistSchema = new Schema<IWaitlist>(
             trim: true,
         },
         country: {
-            type: String,
-            required: true,
-            trim: true,
-        },
-        role: {
-            type: String,
-            required: true,
-            trim: true,
-        },
-        userType: {
             type: String,
             required: true,
             trim: true,
