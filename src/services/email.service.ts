@@ -8,7 +8,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export const sendWaitlistConfirmation = async (email: string, name: string) => {
     try {
         const { data, error } = await resend.emails.send({
-            from: 'Xerion <support@zerastake.com>',
+            from: 'Xerion <waitlist@x-autocal.store>',
             to: email,
             subject: 'Welcome to Xerion Waitlist! 🎉',
             html: getWaitlistEmailTemplate(name),
