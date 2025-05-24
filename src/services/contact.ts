@@ -9,7 +9,7 @@ export const contactUsNotification = async (message: string
 ) => {
     try {
         const { data, error } = await resend.emails.send({
-            from: 'Xerion <support@zerastake.com>',
+            from: 'Xerion <waitlist@x-autocal.store>',
             to: 'xerionautocal@gmail.com',
             subject: '📥 New Contact Us Message',
             html: getContactTemplate(message),
