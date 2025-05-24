@@ -1,11 +1,12 @@
 import { Request, Response } from 'express';
 
 import { contactUsNotification } from '../services/contact';
+import { IContact } from '../models/contact';
 
 
 export const contactUs = async (req: Request, res: Response) => {
     try {
-        const { message } = req.body;
+        const { message } = req.body as IContact;
 
         try {
             await contactUsNotification(message);
