@@ -4,6 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import waitlistRoutes from './routes/waitlist';
 import healthRoutes from './routes/health';
+import contactRoutes from './routes/contact-us';
 
 dotenv.config();
 
@@ -32,6 +33,7 @@ app.use(express.json());
 
 // Routes
 app.use('/api/waitlist', waitlistRoutes);
+app.use('/api/contact', contactRoutes);
 app.use('/health', healthRoutes);
 
 // MongoDB Connection
